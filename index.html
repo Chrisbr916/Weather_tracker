@@ -5,22 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  
+    <link rel="stylesheet" href="style.css"/>
     <title>Weather Application</title>
 </head>
 <body>
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: -18rem background-color aqua margin-0;">
   <div class="card-body">
     <h5 class="card-title">Search a location</h5>
-    <div class="input-group mb-3">
+    <div class="searchLocation mb-3">
         <input type="text" class="form-control" placeholder="Royal Oak" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="Searchbtn">Search</button>
+        <button class="Search btn-outline-secondary" type="button" id="Searchbtn">Search</button>
       </div>
-   
+      
    
   </div>
+  
 </div>
+<h2>Searched Locations</h2>
+<ul class = "Locations" id = "LocationsList"></ul>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="script.js"></script>
 </body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 </html>
