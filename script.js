@@ -32,6 +32,51 @@ function currentLocation(city) {
 };
 
 
+function clickHandler(event) {
+    event.preventDefault();
+
+    var city = searchRequestEl.ariaValueMax.trim();
+    while(fiveDayForecastEl.firstChild){
+        fiveDayForecastEl.removeChild(fiveDayForecastEl.firstChild);
+    }
+
+
+if (city) {
+    currentLocation(city);
+    citiesArr.push(city)
+    localStorage.setItem('city', JSON.stringify(citiesArr));
+    cityHistory();
+    searchRequestEl.value = '';
+} else {
+    alert('Enter a Valid city');
+}
+
+}
+
+
+cityHistory();
+
+function cityHistory(){
+    historyEl.innerHTML = "";
+    for (var i = 0; i < citiesArr.length; i++) {
+        var button = document.createElement('button');
+        button.textContent = citiesArr[i];
+        historyEl.append(button);
+        console.log("first")
+        console.log(citiesArr[i]);
+
+        button.addEventListener('click', function(){
+
+            while(fiveDayForecastEl.firstElementChild){
+                fiveDayForecastEl.removeChild(fiveDayForecastEl.firstElementChild)
+            }
+            currentLocation($(this).text())
+        })
+    }
+}
+
+
+
 
 
 console.log(weatherURL);
