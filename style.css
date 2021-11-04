@@ -1,0 +1,29 @@
+#searchButton {
+    margin-top: 8px;
+}
+
+.favorable {
+    color:blue;
+}
+
+.moderate {
+    color: pink;
+}
+
+.severe {
+    color: black;
+}
+
+.card {
+    margin: 6px;
+    height: 240px;
+    width: 200px;
+    display: inline-block;
+}
+
+button {
+  border: solid 2px black;
+  display: list-item;
+  margin: 3px;
+  border-radius: 4px;
+}

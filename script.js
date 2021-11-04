@@ -16,7 +16,7 @@ var citiesArr = JSON.parse(localStorage.getItem('city')) || [];
 function currentLocation(city) {
     var APIKey = "f43a73be09a020c8ebdcb66f12500bb5";
 
-    var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
     fetch(queryURL)
     .then(function(response){
@@ -110,13 +110,49 @@ function displayWeather(weather) {
 }
 
 
-console.log(weatherURL);
-
-
-fetch(weatherURL);
 
 
 
+function fiveDayForecast(daily) {
+    
+    for (var i = 1; i <= 5; i++) {
+        var cardEl= document.createElement('div');
+        cardEl.setAttribute("class", "card bg-primary text-white")
+        var cardBodyEl= document.createElement('div');
+        cardBodyEl.setAttribute("class", "card-body");
+        var forecastDateEl=document.createElement('div');
+        var unix = daily.daily[i].dt;
+        var convertDate = new Date(unix*1000);
+        forecastDateEl.textContent = convertDate.toLocaleDateString("en-US");
+        cardBodyEl.append(forecastDateEl);
+        var dailyWeatherIconEl = document.createElement('img');
+        dailyWeatherIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + daily.daily[i].weather[0].icon + ".png");
+        cardBodyEl.append(dailyWeatherIconEl);
+        var cardTempEl = document.createElement('div');
+        cardTempEl.setAttribute("class", "card-text");
+        cardTempEl.textContent = "Temp: " + daily.daily[i].temp.day + "°F";
+        cardBodyEl.append(cardTempEl);
+        var cardWindEl = document.createElement('div');
+        cardWindEl.textContent = "Wind: " + daily.daily[i].wind_speed + " MPH";
+        cardBodyEl.append(cardWindEl);
+        var cardHumidityEl = document.createElement('div');
+        cardHumidityEl.setAttribute("class", "card-text");
+        cardHumidityEl.textContent = "Humidity: " + daily.daily[i].humidity + "%";
+        cardBodyEl.append(cardHumidityEl);
+        cardEl.append(cardBodyEl);
+        
+        // fiveDayForecastEl = '';
+    
+    
+    fiveDayForecastEl.append(cardEl);
+    }
+    
+    }
+    
+    
+     
+    //click function for submit
+    searchButtonEl.addEventListener('click', clickHandler);
 
 
 
