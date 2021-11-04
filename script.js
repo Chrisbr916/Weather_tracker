@@ -76,7 +76,38 @@ function cityHistory(){
 }
 
 
+function displayWeather(weather) {
+    cityEl.textContent = weathe.name;
+    dateEl.textContent = moment().format("MM-DD-YY");
+    tempData = weather.main.temp
+    tempEl.textContent = " Temp: " + tempData + "F"
+    weatherIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + weather.weather[0].icon + ".png"); //Need to figure this one out
+    windEl.textContent = "Wind: " + weather.wind.speed + " MPH";
+    humidityEl.textContent = "Humidity: " + weather.main.humidity + "%";
+    var getLat = weather.coord.lat;
+    var getLon = weather.coord.lon;
 
+    var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + getLat + "&lon=" + getLon + "&units=imperial" + "&exclude=hourly&exclude=minutely&appid=f43a73be09a020c8ebdcb66f12500bb5";
+    console.log(uvURL);
+        fetch(uvURL)
+        .then(function (response) {
+            if (response.ok) {
+                console.log(response)
+                response.json().then(function (data) {
+                    console.log(data);
+                    uvIndexEl.textContent = "UV Index: " + data.current.uvi;
+                    if (data.current.uvi < 3) {
+                        uvIndexEl.setAttribute("class", "favorable");
+                    } else if (data.current.uvi > 3 && data.current.uvi <= 5) {
+                        uvIndexEl.setAttribute("class", "moderate");
+                    } else {
+                        uvIndexEl.setAttribute("class", "severe");
+                    }
+                    fiveDayForecast(data);
+                });
+            }
+        });
+}
 
 
 console.log(weatherURL);
